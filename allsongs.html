@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Melodi</title>
+  <meta name="description" content="Your description">
+	<meta name="keywords" content="Your,Keywords">
+	<meta name="author" content="HimanshuGupta">
+		
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'style2.css' %}">
+  <link rel="shortcut icon" href="{% static 'img/logo/favicon.ico' %}">
+  <!-- style link -->
+  <link href="{% static 'css/newstyle.css' %}" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">	
+  <!-- Animate CSS -->
+  <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+  <!-- Basic stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+  <!-- Font awesome CSS -->
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">		
+  <!-- Custom CSS -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style-color.css' %}" rel="stylesheet">
+  <link href="{% static 'css/music.css' %}" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-fixed-top navbar-default " style="background: rgba(0,0,0,0.5);">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- logo area -->
+        <a class="navbar-brand" href="{%  url 'music:user_home' %}">
+          <!-- logo image -->
+          <img class="img-responsive" src="{% static 'img/logo/logo.png' %}" id="logo" alt="" />
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'music:latest' %}">Latest Album</a></li>
+          
+          <li><a href="#">All Songs</a></li>
+          <li><a href="{% url 'music:favourite' %}">Favorite Songs</a></li>
+          <li><a href="{% url 'music:my_profile' %}">My Profile</a></li>
+          <li><a href="/logout">Logout</a></li>
+		  <li><br><div class="search-container">
+            <form action="/action_page.php">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+					<!-- hero content -->
+					<div class="hero-content ">
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<!-- heading -->
+						<center><h2>ALL SONGS</h2></center>
+						<br>
+
+						{% for i in song %}
+						<div class="audio-player-container">
+						  <div class="thumbnail-container">
+							<img src="{{ i.thumbnail.url }}" alt="Song 2">
+						  </div>
+						  <div class="audio-controls-container">
+							<audio controls>
+							  <source src="{{ i.audio_file.url }}" type="audio/mpeg">
+							  Your browser does not support the audio element.
+							</audio>
+							<div class="audio-info">
+							  <h3>{{ i.title }}</h3>
+							  <p>{{ i.artist }}</p>
+							</div>
+						  </div>
+						  <br>
+						  <br>
+						  <form action="{% url 'music:favourite' %}" method="post">
+							{% csrf_token %}
+							<input type="hidden" name="song_id" value="{{ i.id }}">
+							<button type="submit" class="btn btn-info">Add to Favorites</button>
+						  </form>
+						</div>
+						<br>
+						
+						</div>
+						<br>
+					</li>
+                                        
+					{% endfor %}
+									 
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ hero end -->
+
+
+
+<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<!-- Bootstrap JS -->
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<!-- WayPoints JS -->
+		<script src="{% static 'js/waypoints.min.js' %}"></script>
+		<!-- Include js plugin -->
+		<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+		<!-- One Page Nav -->
+		<script src="{% static 'js/jquery.nav.js' %}"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="{% static 'js/respond.min.js' %}"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="{% static 'js/html5shiv.js' %}"></script>
+		<!-- Custom JS -->
+		<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
