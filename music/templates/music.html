@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+  <link href="{% static 'css/music.css' %}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d4523abd48.js" crossorigin="anonymous"></script>
+  <body>
+    {% for i in song %}
+    <div class="audio-player-container">
+      <div class="thumbnail-container">
+        <img src="{{ i.thumbnail.url }}" alt="Song 2">
+      </div>
+      <div class="audio-controls-container">
+        <audio controls>
+          <source src="{{ i.audio_file.url }}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <div class="audio-info">
+          <h3>{{ i.title }}</h3>
+          <p>{{ i.artist }}</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    {% endfor %}   
+
+    <script src="{% static 'js/music.js' %}"></script>
+  </body>
+</html>
+
+
+

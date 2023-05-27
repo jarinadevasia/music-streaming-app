@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Melodi</title>
+  <meta name="description" content="Your description">
+	<meta name="keywords" content="Your,Keywords">
+	<meta name="author" content="HimanshuGupta">
+		
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link href="{% static 'css/search.css' %}" rel="stylesheet">
+  <link rel="shortcut icon" href="{% static 'img/logo/favicon.ico' %}">
+</head>
+<body>
+  <!-- {% for i in song %}
+  {{i.title}}
+  <audio controls>
+    <source src="{{ i.audio_file.url }}" type="{{ i.audio_file.content_type }}">
+    Your browser does not support the audio element.
+  </audio>
+  {% endfor %} -->
+  <div class="container">
+    {% for i in song %}
+    <div class="music-player">
+      <img src="{{ i.thumbnail.url }}" class="song-img">
+      <h1>{{ i.title }}</h1>
+      <p>{{ i.artist }}</p>
+      <audio controls>
+        <source src="{{ i.audio_file.url }}" type="audio/mpeg">
+      </audio>
+    </div>
+    <!-- <button type="" class="btn btn-info" id="bt" name="bt">Add Playlist</button><br>
+		<button type="" class="btn btn-info" id="bt" name="bt">Add Favourite</button> -->
+    {% endfor %}
+  </div>
+
+</body>
+</html>
